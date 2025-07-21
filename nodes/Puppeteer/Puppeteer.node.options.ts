@@ -1,3 +1,5 @@
+<<<<<<< Updated upstream
+// --- START OF FILE Puppeteer.node.options.ts (COMPLETE AND UNABRIDGED) ---
 
 import { type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 import { existsSync, readFileSync } from 'node:fs';
@@ -27,15 +29,27 @@ export const nodeDescription: INodeTypeDescription = {
 	displayName: 'Puppeteer',
 	name: 'puppeteer',
 	group: [],
+=======
+import { type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
+import { existsSync, readFileSync } from 'node:fs';
+export const nodeDescription: INodeTypeDescription = {
+	displayName: 'Puppeteer',
+	name: 'puppeteer',
+	// @ts-ignore
+	group: ['puppeteer'],
+>>>>>>> Stashed changes
 	version: 1,
 	description: 'Automate browser interactions using Puppeteer',
 	defaults: {
 		name: 'Puppeteer',
-		color: '#125580',
 	},
 	icon: 'file:puppeteer.svg',
 	inputs: [NodeConnectionTypes.Main],
+<<<<<<< Updated upstream
 	outputs: [NodeConnectionTypes.Main],
+=======
+	outputs: ['main'],
+>>>>>>> Stashed changes
 	usableAsTool: true,
 	properties: [
 		{
@@ -60,7 +74,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'sessionId',
 			type: 'string',
 			default: 'n8n-session-{{ $execution.id }}',
-			description: 'A unique ID for the browser session.',
+			description: 'A unique ID for the browser session',
 			displayOptions: { show: { operation: ['startPersistentBrowser'] } },
 		},
 		{
@@ -85,7 +99,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'stopSessionId',
 			type: 'string',
 			default: '',
-			description: 'Only required if this node cannot find an active session from a "Start" node in this workflow.',
+			description: 'Only required if this node cannot find an active session from a "Start" node in this workflow',
 			displayOptions: { show: { operation: ['stopPersistentBrowser'] } },
 		},
 		{
@@ -93,7 +107,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'stopBrowserManagerUrl',
 			type: 'string',
 			default: 'http://127.0.0.1:3001',
-			description: 'Only required if this node cannot find an active session from a "Start" node in this workflow.',
+			description: 'Only required if this node cannot find an active session from a "Start" node in this workflow',
 			displayOptions: { show: { operation: ['stopPersistentBrowser'] } },
 		},
 
@@ -123,17 +137,16 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'string',
 			required: true,
 			default: 'data',
-			description: 'Name of the binary property in which to store the image or PDF data.',
+			description: 'Name of the binary property in which to store the image or PDF data',
 			displayOptions: { show: { operation: ['getScreenshot', 'getPDF'] } },
 		},
-		// --- The rest of the parameters are unchanged and complete ---
+
 		{
 			displayName: 'Page Ranges',
 			name: 'pageRanges',
 			type: 'string',
-			required: false,
 			default: '',
-			description: 'Paper ranges to print, e.g. 1-5, 8, 11-13.',
+			description: 'Paper ranges to print, e.g. 1-5, 8, 11-13',
 			displayOptions: { show: { operation: ['getPDF'] } },
 		},
 		{
@@ -153,18 +166,20 @@ export const nodeDescription: INodeTypeDescription = {
 			required: true,
 			default: true,
 			displayOptions: { show: { operation: ['getPDF'] } },
-			description: 'Give any CSS @page size declared in the page priority over what is declared in the width or height or format option.',
+			// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
+			description: 'Give any CSS @page size declared in the page priority over what is declared in the width or height or format option',
 		},
 		{
 			displayName: 'Format',
 			name: 'format',
 			type: 'options',
+			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
 				{ name: 'Letter', value: 'Letter' }, { name: 'Legal', value: 'Legal' }, { name: 'Tabloid', value: 'Tabloid' }, { name: 'Ledger', value: 'Ledger' },
 				{ name: 'A0', value: 'A0' }, { name: 'A1', value: 'A1' }, { name: 'A2', value: 'A2' }, { name: 'A3', value: 'A3' }, { name: 'A4', value: 'A4' }, { name: 'A5', value: 'A5' }, { name: 'A6', value: 'A6' },
 			],
 			default: 'Letter',
-			description: 'Valid paper format types when printing a PDF. eg: Letter, A4',
+			description: 'Valid paper format types when printing a PDF. eg: Letter, A4.',
 			displayOptions: { show: { operation: ['getPDF'], preferCSSPageSize: [false] } },
 		},
 		{
@@ -172,7 +187,6 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'height',
 			type: 'string',
 			default: '',
-			required: false,
 			description: 'Sets the height of paper. You can pass in a number or a string with a unit.',
 			displayOptions: { show: { operation: ['getPDF'], preferCSSPageSize: [false] } },
 		},
@@ -181,7 +195,6 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'width',
 			type: 'string',
 			default: '',
-			required: false,
 			description: 'Sets the width of paper. You can pass in a number or a string with a unit.',
 			displayOptions: { show: { operation: ['getPDF'], preferCSSPageSize: [false] } },
 		},
@@ -192,7 +205,7 @@ export const nodeDescription: INodeTypeDescription = {
 			required: true,
 			default: true,
 			displayOptions: { show: { operation: ['getPDF'] } },
-			description: 'Whether to show the header and footer.',
+			description: 'Whether to show the header and footer',
 		},
 		{
 			displayName: 'Margin',
@@ -200,7 +213,7 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'collection',
 			placeholder: 'Add Margin',
 			default: {},
-			description: 'Set the PDF margins.',
+			description: 'Set the PDF margins',
 			displayOptions: { show: { operation: ['getPDF'] } },
 			options: [
 				{ displayName: 'Top', name: 'top', type: 'string', default: '' }, { displayName: 'Bottom', name: 'bottom', type: 'string', default: '' },
@@ -214,7 +227,7 @@ export const nodeDescription: INodeTypeDescription = {
 			required: true,
 			default: false,
 			displayOptions: { show: { operation: ['getPDF'] } },
-			description: 'Whether to show the header and footer.',
+			description: 'Whether to show the header and footer',
 		},
 		{
 			displayName: 'Header Template',
@@ -222,7 +235,7 @@ export const nodeDescription: INodeTypeDescription = {
 			typeOptions: { rows: 5 },
 			type: 'string',
 			default: '',
-			description: 'HTML template for the print header.',
+			description: 'HTML template for the print header',
 			noDataExpression: true,
 			displayOptions: { show: { operation: ['getPDF'], displayHeaderFooter: [true] } },
 		},
@@ -232,7 +245,7 @@ export const nodeDescription: INodeTypeDescription = {
 			typeOptions: { rows: 5 },
 			type: 'string',
 			default: '',
-			description: 'HTML template for the print footer.',
+			description: 'HTML template for the print footer',
 			noDataExpression: true,
 			displayOptions: { show: { operation: ['getPDF'], displayHeaderFooter: [true] } },
 		},
@@ -243,7 +256,8 @@ export const nodeDescription: INodeTypeDescription = {
 			required: true,
 			default: false,
 			displayOptions: { show: { operation: ['getPDF'] } },
-			description: 'Hides default white background and allows generating pdfs with transparency.',
+			// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
+			description: 'Hides default white background and allows generating pdfs with transparency',
 		},
 		{
 			displayName: 'Background Graphics',
@@ -252,7 +266,8 @@ export const nodeDescription: INodeTypeDescription = {
 			required: true,
 			default: false,
 			displayOptions: { show: { operation: ['getPDF'] } },
-			description: 'Set to true to include background graphics.',
+			// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
+			description: 'Set to true to include background graphics',
 		},
 		{
 			displayName: 'Type',
@@ -279,7 +294,8 @@ export const nodeDescription: INodeTypeDescription = {
 			required: true,
 			default: true,
 			displayOptions: { show: { operation: ['getScreenshot'] } },
-			description: 'When true, takes a screenshot of the full scrollable page.',
+			// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
+			description: 'When true, takes a screenshot of the full scrollable page',
 		},
 		{
 			displayName: 'Query Parameters',
@@ -288,7 +304,7 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'fixedCollection',
 			typeOptions: { multipleValues: true },
 			displayOptions: { show: { operation: ['getPageContent', 'getScreenshot', 'getPDF'] } },
-			description: 'The query parameter to send.',
+			description: 'The query parameter to send',
 			default: {},
 			options: [
 				{ name: 'parameters', displayName: 'Parameters', values: [
@@ -308,12 +324,14 @@ export const nodeDescription: INodeTypeDescription = {
 					operation: ['runCustomScript', 'getPageContent', 'getScreenshot', 'getPDF'],
 				},
 			},
+			// eslint-disable-next-line n8n-nodes-base/node-param-collection-type-unsorted-items
 			options: [
 				{
 					displayName: 'Manual Session Override',
 					name: 'manualSessionOverride',
 					type: 'boolean',
 					default: false,
+					// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
 					description: 'Enable to manually provide connection details for an existing session. This is useful for debugging individual nodes.',
 				},
 				{
@@ -322,7 +340,7 @@ export const nodeDescription: INodeTypeDescription = {
 					type: 'string',
 					default: '',
 					required: true,
-					description: 'The WebSocket URL of an existing browser session.',
+					description: 'The WebSocket URL of an existing browser session',
 					displayOptions: { show: { manualSessionOverride: [true] } },
 				},
 				{
@@ -331,7 +349,7 @@ export const nodeDescription: INodeTypeDescription = {
 					type: 'string',
 					default: '',
 					required: true,
-					description: 'The ID of the specific page to attach to in the existing session.',
+					description: 'The ID of the specific page to attach to in the existing session',
 					displayOptions: { show: { manualSessionOverride: [true] } },
 				},
 				{
@@ -340,7 +358,7 @@ export const nodeDescription: INodeTypeDescription = {
 					type: 'number',
 					typeOptions: { minValue: 1 },
 					default: 1,
-					description: 'Maximum number of items to process simultaneously.',
+					description: 'Maximum number of items to process simultaneously',
 				},
 				{
 					displayName: 'Executable Path (Temporary Browser Only)',
@@ -367,7 +385,7 @@ export const nodeDescription: INodeTypeDescription = {
 					displayName: 'Add Container Arguments (Temporary Browser Only)',
 					name: 'addContainerArgs',
 					type: 'boolean',
-					default: isRunningInContainer(),
+					default: false,
 					description: 'Whether to add recommended arguments for container environments. Only applies when not using a persistent session.',
 				},
 				{
