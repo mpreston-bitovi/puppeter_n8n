@@ -1,4 +1,3 @@
-// --- START OF FILE Puppeteer.node.ts (COMPLETE AND UNABRIDGED) ---
 
 import {
 	type IDataObject,

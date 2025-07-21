@@ -1,4 +1,3 @@
-// --- START OF FILE Puppeteer.node.options.ts (COMPLETE AND UNABRIDGED) ---
 
 import { type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 import { existsSync, readFileSync } from 'node:fs';
