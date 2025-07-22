@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-// --- START OF FILE Puppeteer.node.options.ts (COMPLETE AND UNABRIDGED) ---
-
 import { type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 import { existsSync, readFileSync } from 'node:fs';
 
@@ -28,16 +25,8 @@ function isRunningInContainer(): boolean {
 export const nodeDescription: INodeTypeDescription = {
 	displayName: 'Puppeteer',
 	name: 'puppeteer',
-	group: [],
-=======
-import { type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
-import { existsSync, readFileSync } from 'node:fs';
-export const nodeDescription: INodeTypeDescription = {
-	displayName: 'Puppeteer',
-	name: 'puppeteer',
 	// @ts-ignore
 	group: ['puppeteer'],
->>>>>>> Stashed changes
 	version: 1,
 	description: 'Automate browser interactions using Puppeteer',
 	defaults: {
@@ -45,11 +34,7 @@ export const nodeDescription: INodeTypeDescription = {
 	},
 	icon: 'file:puppeteer.svg',
 	inputs: [NodeConnectionTypes.Main],
-<<<<<<< Updated upstream
-	outputs: [NodeConnectionTypes.Main],
-=======
 	outputs: ['main'],
->>>>>>> Stashed changes
 	usableAsTool: true,
 	properties: [
 		{
@@ -385,7 +370,7 @@ export const nodeDescription: INodeTypeDescription = {
 					displayName: 'Add Container Arguments (Temporary Browser Only)',
 					name: 'addContainerArgs',
 					type: 'boolean',
-					default: false,
+					default: isRunningInContainer(),
 					description: 'Whether to add recommended arguments for container environments. Only applies when not using a persistent session.',
 				},
 				{
